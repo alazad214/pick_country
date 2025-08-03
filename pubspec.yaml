@@ -1,7 +1,7 @@
 name: pick_country
-description: "A new Flutter project."
-version: 0.0.1
-homepage:
+description: "A simple Flutter package to display a country picker with flag emojis, either in a dialog or a draggable bottom sheet. It includes a search feature for easy filtering."
+version: 1.0.0
+homepage: https://github.com/alazad214/pick_country
 
 environment:
   sdk: ">=2.17.0 <4.0.0"

@@ -49,6 +49,9 @@ class CountryExampleScreenState extends State<CountryExampleScreen> {
                 label: Text(countryNameBySheet ?? 'Tap from sheet'),
               ),
 
+              SizedBox(
+                height: 20,
+              ),
               //Country Dialog--->>
               ElevatedButton.icon(
                 onPressed: () async {

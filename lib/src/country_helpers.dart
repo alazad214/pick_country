@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'country_list.dart';
 
+///Country Model--->>
 class Country {
   final String name;
   final String iso;
@@ -10,6 +11,7 @@ class Country {
   Country({required this.name, required this.iso})
       : flagEmoji = _emojiFlagFromIso(iso);
 
+  /// Flag emoji created--->>>
   static String _emojiFlagFromIso(String isoAlpha2) {
     final int base = 0x1F1E6;
     return isoAlpha2
@@ -20,6 +22,7 @@ class Country {
   }
 }
 
+///Country Picker With Dialog--->>>
 class CountryPickerDialog extends StatefulWidget {
   const CountryPickerDialog({super.key});
 
@@ -53,13 +56,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
 
   void _onSearch(String q) {
     setState(() {
-      _filtered =
-      allCountries
+      _filtered = allCountries
           .where(
             (c) =>
-        c.name.toLowerCase().contains(q.toLowerCase()) ||
-            c.iso.toLowerCase().contains(q.toLowerCase()),
-      )
+                c.name.toLowerCase().contains(q.toLowerCase()) ||
+                c.iso.toLowerCase().contains(q.toLowerCase()),
+          )
           .toList()
         ..sort((a, b) => a.name.compareTo(b.name));
       _recomputeGroups();
@@ -68,7 +70,6 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Dialog(
       insetPadding: const EdgeInsets.all(12),
       child: SizedBox(
@@ -93,16 +94,15 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 decoration: InputDecoration(
                   hintText: 'Search country name',
                   prefixIcon: const Icon(Icons.search),
-                  suffixIcon:
-                  _searchCtrl.text.isEmpty
+                  suffixIcon: _searchCtrl.text.isEmpty
                       ? null
                       : IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      _searchCtrl.clear();
-                      _onSearch('');
-                    },
-                  ),
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchCtrl.clear();
+                            _onSearch('');
+                          },
+                        ),
                   filled: true,
                   fillColor: Colors.grey.shade100,
                   contentPadding: const EdgeInsets.symmetric(
@@ -126,13 +126,11 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                   for (final letter in _letters) {
                     final countries = _groups[letter]!;
                     if (index == currentIndex) {
-                      // Header
                       return Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 6,
                         ),
-                        color: theme.canvasColor,
                         child: Text(
                           letter,
                           style: const TextStyle(
@@ -194,13 +192,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   int _calculateTotalItemCount() {
     int count = 0;
     for (final letter in _letters) {
-      count += 1; // header
-      count += _groups[letter]!.length; // items
+      count += 1;
+      count += _groups[letter]!.length;
     }
     return count;
   }
 }
 
+///Country Picker With Sheet--->>>
 class CountryPickerSheet extends StatefulWidget {
   const CountryPickerSheet({super.key});
 
@@ -233,13 +232,12 @@ class _CountryPickerSheetState extends State<CountryPickerSheet> {
 
   void _onSearch(String q) {
     setState(() {
-      _filtered =
-      allCountries
+      _filtered = allCountries
           .where(
             (c) =>
-        c.name.toLowerCase().contains(q.toLowerCase()) ||
-            c.iso.toLowerCase().contains(q.toLowerCase()),
-      )
+                c.name.toLowerCase().contains(q.toLowerCase()) ||
+                c.iso.toLowerCase().contains(q.toLowerCase()),
+          )
           .toList()
         ..sort((a, b) => a.name.compareTo(b.name));
       _recomputeGroups();
@@ -277,16 +275,15 @@ class _CountryPickerSheetState extends State<CountryPickerSheet> {
                     decoration: InputDecoration(
                       hintText: 'Search country name',
                       prefixIcon: const Icon(Icons.search),
-                      suffixIcon:
-                      _searchCtrl.text.isEmpty
+                      suffixIcon: _searchCtrl.text.isEmpty
                           ? null
                           : IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          _searchCtrl.clear();
-                          _onSearch('');
-                        },
-                      ),
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchCtrl.clear();
+                                _onSearch('');
+                              },
+                            ),
                       filled: true,
                       fillColor: Colors.grey.shade100,
                       contentPadding: const EdgeInsets.symmetric(
@@ -380,7 +377,7 @@ class _CountryPickerSheetState extends State<CountryPickerSheet> {
   int _getTotalItemCount() {
     int count = 0;
     for (final letter in _letters) {
-      count += 1; // for header
+      count += 1;
       count += _groups[letter]!.length;
     }
     return count;

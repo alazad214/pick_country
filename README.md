@@ -1,39 +1,68 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# pick_country
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A simple and customizable Flutter package to display a country picker with flag emojis, either in a dialog or a draggable bottom sheet. It includes a search feature for easy filtering.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+![](https://raw.githubusercontent.com/alazad214/pick_country/refs/heads/main/banner.png)
 
-## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## 🚀 Installation
 
-## Getting started
+Add this to your `pubspec.yaml`:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  pick_country: <latest_version>
 ```
 
-## Additional information
+Then run:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+flutter pub get
+```
+
+## 📦 Import
+
+```dart
+import 'package:pick_country/pick_country.dart';
+```
+
+## 💡 Usage Example
+
+The package provides a static helper class `PickCountry` with two main methods to show the country picker.
+
+### Showing the Country Picker as a Bottom Sheet
+
+```dart
+ElevatedButton.icon(
+  onPressed: () async {
+    final result = await PickCountry.sheet(context);
+    if (result != null) {
+      // Do something with the selected country name, e.g., update UI state
+      print('Selected country from sheet: $result');
+    }
+  },
+  icon: const Icon(Icons.public),
+  label: const Text('Tap from sheet'),
+)
+```
+
+### Showing the Country Picker as a Dialog
+
+```dart
+ElevatedButton.icon(
+  onPressed: () async {
+    final result = await PickCountry.dialog(context);
+    if (result != null) {
+      // Do something with the selected country name, e.g., update UI state
+      print('Selected country from dialog: $result');
+    }
+  },
+  icon: const Icon(Icons.public),
+  label: const Text('Tap from dialog'),
+)
+
+
+## 🛠 Customization
+
+The `CountryPickerDialog` and `CountryPickerSheet` widgets are built to be responsive and include a search bar and a list grouped by the first letter of the country name. You can customize the styling of these widgets by modifying the source files directly.
